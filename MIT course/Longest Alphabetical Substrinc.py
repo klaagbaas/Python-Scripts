@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-s = "abbcxefgh"
-length = 0
-string = ""
-for i in range(len(s)-1):
-    j = i
-    l = 1
-    seq = s[j]
-    while j < len(s)-1 and s[j] <= s[j+1]:
-        seq += s[j+1]     
-        j += 1
-        l += 1
-    if l > length:
-        length = l
-        string = seq
-print("Longest substring in alphabetical order is:", string)
+string = "abbcxefghwdvlksfjikjlmwfodkjdasg"
+sublength = 0
+substring = ""
+for letter in range(len(string)-1):
+    location = letter
+    length = 1
+    seq = string[location]
+    while location < len(string)-1 and string[location] <= string[location+1]:
+        seq += string[location+1]     
+        location += 1
+        length += 1
+    if length > sublength:
+        sublength = length
+        substring = seq
+print("Longest substring in alphabetical order is:", substring)
