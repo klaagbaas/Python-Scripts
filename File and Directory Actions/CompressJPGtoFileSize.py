@@ -2,7 +2,6 @@ import io
 import math
 import sys
 import os
-import numpy as np
 from PIL import Image
 
 def JPEGSaveWithTargetSize(im, filename, target):
@@ -36,7 +35,8 @@ def JPEGSaveWithTargetSize(im, filename, target):
 # main
 
 ## scan the subdirs for files of our specification, jpg
-source = '/Volumes/GoogleDrive-116537148341854220400/Shared drives/Descon Master Drive/Vendor Deliveries/Descon 2022 Shutterstock/DENVER/Images'
+city = 'DENVER'
+source = f'/Volumes/GoogleDrive-116537148341854220400/Shared drives/Descon Master Drive/Vendor Deliveries/Descon 2022 Shutterstock/{city}/Images'
 filesize = 20000000
 filepath = []
 for root, dirs, files in os.walk(source):
