@@ -4,16 +4,16 @@ import sys
 import os
 from PIL import Image
 
-def JPEGSaveWithTargetSize(im, filename, target):
+def JPEG_save_with_target_size(im, filename, target):
    '''Save the image as JPEG with the given name at best quality that makes less than 'target' bytes'''
 
    # Min and Max quality
-   Qmin, Qmax = 20, 100
+   q_min, q_max = 20, 100
 
    # Highest acceptable quality found
-   Qacc = -1
-   while Qmin <= Qmax:
-      m = math.floor((Qmin + Qmax) / 2)
+   q_acc = -1
+   while q_min <= q_max:
+      m = math.floor((q_min + q_max) / 2)
 
       # Encode into memory and get size
       buffer = io.BytesIO()
@@ -21,21 +21,21 @@ def JPEGSaveWithTargetSize(im, filename, target):
       s = buffer.getbuffer().nbytes
 
       if s <= target:
-         Qacc = m
-         Qmin = m + 1
+         q_acc = m
+         q_min = m + 1
       elif s > target:
-         Qmax = m - 1
+         q_max = m - 1
 
    # Write to disk at the defined quality
-   if Qacc > -1:
-      im.save(filename, format='JPEG', quality=Qacc)
+   if q_acc > -1:
+      im.save(filename, format='JPEG', quality=q_acc)
    else:
       print('ERROR: No acceptble quality factor found', file=sys.stderr)
 
 # main
 
 ## scan the subdirs for files of our specification, jpg
-city = 'DENVER'
+city = 'LIVERPOOL'
 source = f'/Volumes/GoogleDrive-116537148341854220400/Shared drives/Descon Master Drive/Vendor Deliveries/Descon 2022 Shutterstock/{city}/Images'
 filesize = 20000000
 filepath = []
@@ -49,6 +49,6 @@ for name in filepath:
         if os.path.getsize(name) > filesize:
             print('Compressing', name)
             image = Image.open(name)
-            JPEGSaveWithTargetSize(image, name, filesize)
+            JPEG_save_with_target_size(image, name, filesize)
 
-print(f'\n*** {city} Done!\n')
+print(f'\n*** {city} done!\n')
