@@ -47,8 +47,8 @@ for root, dirs, files in os.walk(source):
 for name in filepath:
     if '.jpg' in name:
         if os.path.getsize(name) > filesize:
+            print('Compressing', name)
             image = Image.open(name)
             JPEGSaveWithTargetSize(image, name, filesize)
-            print('Compressed', name)
 
-print('/n*** Done!/n')
+print(f'\n*** {city} Done!\n')
