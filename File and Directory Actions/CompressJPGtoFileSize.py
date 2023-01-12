@@ -5,7 +5,7 @@ import os
 from PIL import Image
 
 def JPEGSaveWithTargetSize(im, filename, target):
-   """Save the image as JPEG with the given name at best quality that makes less than "target" bytes"""
+   '''Save the image as JPEG with the given name at best quality that makes less than 'target' bytes'''
 
    # Min and Max quality
    Qmin, Qmax = 20, 100
@@ -17,7 +17,7 @@ def JPEGSaveWithTargetSize(im, filename, target):
 
       # Encode into memory and get size
       buffer = io.BytesIO()
-      im.save(buffer, format="JPEG", quality=m)
+      im.save(buffer, format='JPEG', quality=m)
       s = buffer.getbuffer().nbytes
 
       if s <= target:
@@ -28,9 +28,9 @@ def JPEGSaveWithTargetSize(im, filename, target):
 
    # Write to disk at the defined quality
    if Qacc > -1:
-      im.save(filename, format="JPEG", quality=Qacc)
+      im.save(filename, format='JPEG', quality=Qacc)
    else:
-      print("ERROR: No acceptble quality factor found", file=sys.stderr)
+      print('ERROR: No acceptble quality factor found', file=sys.stderr)
 
 # main
 
@@ -49,6 +49,6 @@ for name in filepath:
         if os.path.getsize(name) > filesize:
             image = Image.open(name)
             JPEGSaveWithTargetSize(image, name, filesize)
-            print("Compressed", name)
+            print('Compressed', name)
 
-print("*** Done!")
+print('/n*** Done!/n')
