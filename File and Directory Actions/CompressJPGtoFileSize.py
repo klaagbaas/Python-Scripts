@@ -47,7 +47,7 @@ for root, dirs, files in os.walk(source):
 for name in filepath:
     if '.jpg' in name:
         if os.path.getsize(name) > filesize:
-            print('Compressing', name)
+            print(f'Compressing {name}, [{filepath.index(name)}/{len(filepath)}]')
             image = Image.open(name)
             JPEG_save_with_target_size(image, name, filesize)
 
